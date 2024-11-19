@@ -4,3 +4,20 @@
 
 // Recommended: Ask for the city name and then the rest of the code
 
+
+
+
+const bigCityDiv = document.querySelector("#cities");
+
+function createCityButton(cityName) {
+    const newDiv = document.createElement("div"); 
+    newDiv.classList.add("cityBox");
+    newDiv.textContent = cityName; 
+    bigCityDiv.append(newDiv);
+}
+
+for (let i = 0; i < cities.length; i++) {
+    createCityButton(cities[i].name)
+}
+
+
