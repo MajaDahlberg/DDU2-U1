@@ -6,7 +6,7 @@
 
 
 
-let userWritesACityName = prompt("Vilken stad?")
+let userWritesACityName = prompt("Vilken stad?");
 
 const bigCityDiv = document.querySelector("#cities");
 
@@ -18,7 +18,37 @@ function createCityButton(cityName) {
 }
 
 for (let i = 0; i < cities.length; i++) {
-    createCityButton(cities[i].name)
+    createCityButton(cities[i].name);
 }
+
+// --------------------------------------------------
+
+let cityIsFound = false;
+
+for (let i = 0; i < cities.length; i++) {
+   if (userWritesACityName == cities[i].name) {
+        document.querySelector("h2").textContent = `${cities[i].name} (${cities[i].country})`; 
+        document.querySelector("title").textContent = `${cities[i].name}`;
+
+        const cityDivs = document.querySelectorAll(".cityBox");
+        cityDivs[i].classList.add("target"); 
+
+        cityIsFound = true; 
+        break;
+    } 
+}
+
+for (let i = 0; i < )
+
+// function nameAndCountryH2() {
+//     const foundCity = cities.name; 
+//     const getH2 = document.querySelector("h2");
+
+//     getH2.textContent = `${cities.name} `;
+// }
+
+
+
+
 
 
