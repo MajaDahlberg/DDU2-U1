@@ -38,14 +38,29 @@ for (let i = 0; i < cities.length; i++) {
     } 
 }
 
-for (let i = 0; i < )
+// ------------------------------------------------------ BLÅA
 
-// function nameAndCountryH2() {
-//     const foundCity = cities.name; 
-//     const getH2 = document.querySelector("h2");
+let maxDistance = 0; // (deklarerar=skapa) deklarerar variabeln maxDistance och tilldelar värdet 0 till "maxDistance"
+let farthestCityIndex = -1; // same same fast "farthestCityIndex" får värdet -1
 
-//     getH2.textContent = `${cities.name} `;
-// }
+for (let i= 0; i < distances.length; i++) {  // loop: så länge distance.length är större än i så fortsätter loopen, dvs längden på arrayen som heter distances (i databasen). I arrayen finns det objekt som har varsit index-nummer. Med loopen säger vi till datorn att gå igenom alla objekt som finns tills att den når den sista då distances.length blir större än i, då stannar den. 
+    if (userWritesACityName === cities[distances[i].city1].name || userWritesACityName === cities [distances[i].city2].name) { // påbörjar en if-sats meed villkoret: 
+        let farthestCity = (userWritesACityName === cities[distances[i].city1].name) ? distances[i].city2 : distances[i].city1;
+        if (distances[i].distance > maxDistance) {
+            maxDistance = distances[i].distance; 
+            farthestCityIndex = farthestCity;
+        }
+    }
+}
+
+if (farthestCityIndex !== -1) {
+    const cityDivs = document.querySelectorAll(".cityBox"); 
+    cityDivs[farthestCityIndex].classList.add("furthest");
+}
+
+
+// ------------------------------------------------------
+
 
 
 
