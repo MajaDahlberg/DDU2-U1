@@ -59,6 +59,26 @@ if (farthestCityIndex !== -1) {
 }
 
 
+//---------------------------------------------------- GRÖNA 
+
+let minDistance = Infinity; 
+let closestCityIndex = -1; 
+
+for (let i = 0; i < distances.length; i++) {
+    if (userWritesACityName === cities[distances[i].city1].name || userWritesACityName === cities[distances[i].city2].name) {
+        let closestCity = (userWritesACityName === cities[distances[i].city1].name) ? distances[i].city2 : distances[i].city1; 
+        if (distances[i].distance < minDistance) {
+            minDistance = distances[i].distance;
+            closestCityIndex = closestCity;
+        }
+    }
+}
+
+if (closestCityIndex !== -1) {
+    const cityDivs = document.querySelectorAll(".cityBox"); 
+    cityDivs[closestCityIndex].classList.add("closest");
+}
+
 // ------------------------------------------------------
 
 
