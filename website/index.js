@@ -6,6 +6,7 @@
 
 
 
+let userWritesACityName = prompt("Vilken stad?")
 
 const bigCityDiv = document.querySelector("#cities");
 
