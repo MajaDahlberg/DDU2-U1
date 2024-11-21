@@ -6,8 +6,9 @@
 
 
 
-let userWritesACityName = prompt("Vilken stad?");
+let cityFromUser = prompt("Vilken stad?");
 
+// --------------------------------------------------- CITY BUTTONS
 const bigCityDiv = document.querySelector("#cities");
 
 function createCityButton(cityName) {
@@ -21,12 +22,12 @@ for (let i = 0; i < cities.length; i++) {
     createCityButton(cities[i].name);
 }
 
-// --------------------------------------------------
+// -------------------------------------------------- STADEN MAN SKRIVER I PROMPTEN BLIR SVART
 
 let cityIsFound = false;
 
 for (let i = 0; i < cities.length; i++) {
-   if (userWritesACityName == cities[i].name) {
+   if (cityFromUser == cities[i].name) {
         document.querySelector("h2").textContent = `${cities[i].name} (${cities[i].country})`; 
         document.querySelector("title").textContent = `${cities[i].name}`;
 
@@ -38,52 +39,98 @@ for (let i = 0; i < cities.length; i++) {
     } 
 }
 
-// ------------------------------------------------------ BLÅA
+// ------------------------------------------------------ BLÅA KNAPPAR
 
-let maxDistance = 0; // (deklarerar=skapa) deklarerar variabeln maxDistance och tilldelar värdet 0 till "maxDistance"
-let farthestCityIndex = -1; // same same fast "farthestCityIndex" får värdet -1
+let maxDistance = 0;
+let farthestCityIndex = -1;
 
-for (let i= 0; i < distances.length; i++) {  // loop: så länge distance.length är större än i så fortsätter loopen, dvs längden på arrayen som heter distances (i databasen). I arrayen finns det objekt som har varsit index-nummer. Med loopen säger vi till datorn att gå igenom alla objekt som finns tills att den når den sista då distances.length blir större än i, då stannar den. 
-    if (userWritesACityName === cities[distances[i].city1].name || userWritesACityName === cities [distances[i].city2].name) { // påbörjar en if-sats meed villkoret: 
-        let farthestCity = (userWritesACityName === cities[distances[i].city1].name) ? distances[i].city2 : distances[i].city1;
-        if (distances[i].distance > maxDistance) {
-            maxDistance = distances[i].distance; 
-            farthestCityIndex = farthestCity;
+const ifCityMatch = (cityName, cityIndex) => cityFromUser === cities[cityIndex].name;
+
+for (let i = 0; i < distances.length; i++) {
+    const { city1, city2, distance } = distances[i];
+    
+    if (ifCityMatch(cityFromUser, city1) || ifCityMatch(cityFromUser, city2)) {
+        const otherCity = ifCityMatch(cityFromUser, city1) ? city2 : city1;
+
+        if (distance > maxDistance) {
+            maxDistance = distance;
+            farthestCityIndex = otherCity;
         }
     }
 }
 
 if (farthestCityIndex !== -1) {
-    const cityDivs = document.querySelectorAll(".cityBox"); 
-    cityDivs[farthestCityIndex].classList.add("furthest");
+    document.querySelectorAll(".cityBox")[farthestCityIndex]?.classList.add("furthest");
 }
 
 
 //---------------------------------------------------- GRÖNA 
 
-let minDistance = Infinity; 
-let closestCityIndex = -1; 
+let minDistance = Infinity;
+let closestCityIndex = -1;
+
+const isCityMatch = (cityName, cityIndex) => cityFromUser === cities[cityIndex].name;
 
 for (let i = 0; i < distances.length; i++) {
-    if (userWritesACityName === cities[distances[i].city1].name || userWritesACityName === cities[distances[i].city2].name) {
-        let closestCity = (userWritesACityName === cities[distances[i].city1].name) ? distances[i].city2 : distances[i].city1; 
-        if (distances[i].distance < minDistance) {
-            minDistance = distances[i].distance;
-            closestCityIndex = closestCity;
+    const { city1, city2, distance } = distances[i];
+    
+    if (isCityMatch(cityFromUser, city1) || isCityMatch(cityFromUser, city2)) {
+        const otherCity = isCityMatch(cityFromUser, city1) ? city2 : city1;
+        
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestCityIndex = otherCity;
         }
     }
 }
 
 if (closestCityIndex !== -1) {
-    const cityDivs = document.querySelectorAll(".cityBox"); 
-    cityDivs[closestCityIndex].classList.add("closest");
+    const cityElements = document.querySelectorAll(".cityBox");
+    cityElements[closestCityIndex].classList.add("closest");
 }
 
-// ------------------------------------------------------
 
+// ------------------------------------------------------ MALL FÖR TABELLEN 
 
+function createTable() {
+    const tabell = document.querySelector("#table"); 
+  
+    tabell.style.width = "100%"; 
+    
+    const rows = cities.length; 
+    const columns = 40;
 
+    for ( let a = 0; a < columns; a++) {
+      const emptyCell = document.createElement("div");
+      emptyCell.classList.add("cell"); 
+      emptyCell.classList.add("head_column"); 
+      emptyCell.style.display = "grid";
+      tabell.appendChild(emptyCell); 
+  
+      if (a=== 0) {
+        emptyCell.textContent = ""; 
+      } else {
+        emptyCell.textContent = cities[a-1].id; 
+      }
+    }
 
+ for (let i = 0; i < rows; i++) {
+    let namesRow = document.createElement("div");
+    namesRow.textContent = `${cities[i].id}` + " - " + cities[i].name; 
+    namesRow.classList.add("head_row");
+    namesRow.classList.add("cell");
+    namesRow.style.display = "grid"; 
+    tabell.appendChild(namesRow);
 
+    
+    for (let j = 1; j < columns; j++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell"); 
+      cell.style.display = "grid"; 
+      tabell.appendChild(cell);
+      
+    }
+}
+}
 
-
+createTable ();
