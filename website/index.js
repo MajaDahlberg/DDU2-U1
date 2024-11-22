@@ -22,15 +22,12 @@ for (let i = 0; i < cities.length; i++) {
     createCityButton(cities[i].name);
 }
 
-// -------------------------------------------------- OM USER SKRIVER IN ETT ORD SOM INTE FINNS I DATABASEN 
-
 
 // -------------------------------------------------- STADEN MAN SKRIVER I PROMPTEN BLIR SVART 
 
 let cityIsFound = false;
 
 for (let i = 0; i < cities.length; i++) {
-   if (cityFromUser == cities[i].name) {
     if (cityFromUser == cities[i].name) {
         document.querySelector("h2").textContent = `${cities[i].name} (${cities[i].country})`; 
         document.querySelector("title").textContent = `${cities[i].name}`;
@@ -71,11 +68,17 @@ for (let i = 0; i < distances.length; i++) {
 }
 
 if (farthestCityIndex !== -1) {
-    document.querySelectorAll(".cityBox")[farthestCityIndex]?.classList.add("furthest");
+    const cityElements = document.querySelectorAll(".cityBox");
+    cityElements[farthestCityIndex].classList.add("furthest");
+
+    const distanceDividedByTen = Math.round(maxDistance / 10);
+    cityElements[farthestCityIndex].textContent = `${cities[farthestCityIndex].name} ${distanceDividedByTen} mil bort`;
+
+    document.getElementById("furthest").textContent = `${cities[farthestCityIndex].name}`;
 }
 
 
-//---------------------------------------------------- GRÖNA 
+//---------------------------------------------------- GRÖNA KNAPPAR STADEN SOM ÄR NÄRMST
 
 let minDistance = Infinity;
 let closestCityIndex = -1;
