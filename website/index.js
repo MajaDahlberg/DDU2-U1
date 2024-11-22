@@ -109,37 +109,14 @@ if (closestCityIndex !== -1) {
 }
 
 
-// ------------------------------------------------------ MALL FÖR TABELLEN 
+
+// ---------------------------------------------- INNEHÅLLET PÅ TABELLEN
 
 function createTable() {
-    const tabell = document.querySelector("#table"); 
-  
-    tabell.style.width = "100%"; 
+    const tabell = document.querySelector("#table"); // Grid-layout
+    tabell.style.width = "100%";
+    tabell.style.display = "grid";
     
-    const rows = cities.length; 
-    const columns = 40;
-
-    for ( let a = 0; a < columns; a++) {
-      const emptyCell = document.createElement("div");
-      emptyCell.classList.add("cell"); 
-      emptyCell.classList.add("head_column"); 
-      emptyCell.style.display = "grid";
-      tabell.appendChild(emptyCell); 
-  
-      if (a=== 0) {
-        emptyCell.textContent = ""; 
-      } else {
-        emptyCell.textContent = cities[a-1].id; 
-      }
-    }
-
- for (let i = 0; i < rows; i++) {
-    let namesRow = document.createElement("div");
-    namesRow.textContent = `${cities[i].id}` + " - " + cities[i].name; 
-    namesRow.classList.add("head_row");
-    namesRow.classList.add("cell");
-    namesRow.style.display = "grid"; 
-    tabell.appendChild(namesRow);
 
     
     for (let j = 1; j < columns; j++) {
