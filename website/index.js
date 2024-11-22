@@ -101,6 +101,11 @@ for (let i = 0; i < distances.length; i++) {
 if (closestCityIndex !== -1) {
     const cityElements = document.querySelectorAll(".cityBox");
     cityElements[closestCityIndex].classList.add("closest");
+    
+    const distanceDividedByTen = Math.round(minDistance / 10);
+    cityElements[closestCityIndex].textContent = `${cities[closestCityIndex].name} ${distanceDividedByTen} mil bort`;
+
+    document.getElementById("closest").textContent = `${cities[closestCityIndex].name}`;
 }
 
 
