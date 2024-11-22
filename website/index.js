@@ -22,24 +22,35 @@ for (let i = 0; i < cities.length; i++) {
     createCityButton(cities[i].name);
 }
 
-// -------------------------------------------------- STADEN MAN SKRIVER I PROMPTEN BLIR SVART
+// -------------------------------------------------- OM USER SKRIVER IN ETT ORD SOM INTE FINNS I DATABASEN 
+
+
+// -------------------------------------------------- STADEN MAN SKRIVER I PROMPTEN BLIR SVART 
 
 let cityIsFound = false;
 
 for (let i = 0; i < cities.length; i++) {
    if (cityFromUser == cities[i].name) {
+    if (cityFromUser == cities[i].name) {
         document.querySelector("h2").textContent = `${cities[i].name} (${cities[i].country})`; 
         document.querySelector("title").textContent = `${cities[i].name}`;
-
+        
         const cityDivs = document.querySelectorAll(".cityBox");
         cityDivs[i].classList.add("target"); 
-
+        
         cityIsFound = true; 
         break;
     } 
 }
 
-// ------------------------------------------------------ BLÅA KNAPPAR
+if (!cityIsFound) { // ! = om det man skriver i prompten inte finns i databasen 
+    document.querySelector("h2").textContent = `${cityFromUser} finns inte i databasen`
+    document.querySelector("title").textContent = `Not found` // titeln (högst upp på webbfönstret) blir "not found"
+    document.querySelector("h3").textContent = null; // h3:an slutar existera
+
+}
+
+// ------------------------------------------------------ BLÅA KNAPPAR STADEN SOM ÄR LÄNGST BORT 
 
 let maxDistance = 0;
 let farthestCityIndex = -1;
