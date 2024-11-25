@@ -146,6 +146,11 @@ function createTable() {
         namesRow.classList.add("head_row");
         namesRow.classList.add("cell");
         tabell.appendChild(namesRow);
+        
+        if (i % 2 === 0) { 
+            namesRow.classList.add("even_row")
+        }
+
     }
 }
 }
