@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: skyblue;
+  background-color: rgb(50, 174, 170);
   margin: 20px;
 }
 
@@ -19,14 +19,14 @@ body {
 
 #cities .cityBox {
   padding: 3px 6px;
-  background-color: lightgrey;
+  background-color: rgb(202, 222, 226);
   border-radius: 5px;
 }
 
 #cities .target, #cities .closest, #cities .furthest { color: white }
 #cities .target { background-color: black; }
-#cities .closest { background-color: green;}
-#cities .furthest { background-color: blue; }
+#cities .closest { background-color: rgb(13, 182, 100);}
+#cities .furthest { background-color: rgb(0, 157, 255); }
 
 h1 {
   text-align: center;
@@ -48,7 +48,7 @@ h2, h3, p {
   text-decoration: none;
   color: black;
   flex-basis: 200px;
-  background-color: lightgrey;
+  background-color: rgb(202, 222, 226);
   border-radius: 5px;
   text-align: center;
 }

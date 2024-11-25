@@ -117,6 +117,12 @@ function createTable() {
     tabell.style.width = "100%";
     tabell.style.display = "grid";
     
+    const rows = cities.length;
+    const columns = cities.length + 1; // En extra för header-raden
+    
+    tabell.style.gridTemplateColumns = `80px repeat(${columns - 1}, 1fr)`;
+    tabell.style.gridTemplateRows = `repeat(${rows + 1}, 1fr)`;
+    
 
     
     for (let j = 1; j < columns; j++) {
