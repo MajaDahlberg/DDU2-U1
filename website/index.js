@@ -151,6 +151,35 @@ function createTable() {
             namesRow.classList.add("even_row")
         }
 
+        for (let j = 0; j < cities.length; j++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.style.display = "grid";
+
+        if (j % 2 === 0)
+            cell.style.backgroundColor = "rgb(202, 222, 226)";
+
+            let distanceValue = null; //värdet av distance
+            for (let distance of distances) {
+                if ((distance.city1 === cities[i].id && distance.city2 === cities[j].id)) {
+                    distanceValue = distance.distance;
+                    break;
+                }
+                if (distance.city2 === cities[i].id && distance.city1 === cities[j].id) {
+                    distanceValue = distance.distance;
+                }
+            }
+            
+            if (distanceValue !== null) {
+                cell.textContent = distanceValue / 10;
+            } else if (i === j) {
+                cell.textContent = "";
+            }
+            
+            
+
+            tabell.appendChild(cell);
+        }
     }
 }
 }
