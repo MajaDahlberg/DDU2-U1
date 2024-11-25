@@ -123,6 +123,12 @@ function createTable() {
     tabell.style.gridTemplateColumns = `80px repeat(${columns - 1}, 1fr)`;
     tabell.style.gridTemplateRows = `repeat(${rows + 1}, 1fr)`;
     
+    // Header-rad
+    for (let a = 0; a < columns; a++) {
+        const emptyCell = document.createElement("div");
+        emptyCell.classList.add("cell");
+        emptyCell.classList.add("head_column");
+        emptyCell.style.display = "grid";
 
     
     for (let j = 1; j < columns; j++) {
