@@ -130,6 +130,14 @@ function createTable() {
         emptyCell.classList.add("head_column");
         emptyCell.style.display = "grid";
 
+        
+        if (a === 0) {
+            emptyCell.textContent = ""; // Tom första cell
+        } else {
+            emptyCell.textContent = cities[a - 1].id; // Stadens ID
+        }
+        tabell.appendChild(emptyCell);
+    }
     
     for (let j = 1; j < columns; j++) {
       const cell = document.createElement("div");
