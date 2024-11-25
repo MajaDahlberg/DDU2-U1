@@ -139,12 +139,13 @@ function createTable() {
         tabell.appendChild(emptyCell);
     }
     
-    for (let j = 1; j < columns; j++) {
-      const cell = document.createElement("div");
-      cell.classList.add("cell"); 
-      cell.style.display = "grid"; 
-      tabell.appendChild(cell);
-      
+    // Fyll i rader och celler
+    for (let i = 0; i < rows; i++) {
+        let namesRow = document.createElement("div");
+        namesRow.textContent = cities[i].id + " - " + cities[i].name;
+        namesRow.classList.add("head_row");
+        namesRow.classList.add("cell");
+        tabell.appendChild(namesRow);
     }
 }
 }
