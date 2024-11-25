@@ -176,12 +176,15 @@ function createTable() {
                 cell.textContent = "";
             }
             
+            if (i % 2 === 0) { 
+                cell.classList.add("even_row")
+            }
             
 
             tabell.appendChild(cell);
         }
     }
 }
-}
-
 createTable ();
+
+// ------------------------------------------
