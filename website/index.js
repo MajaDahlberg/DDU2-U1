@@ -1,9 +1,3 @@
-// Recommended: All functions declared here
-
-// Recommended: constants with references to existing HTML-elements
-
-// Recommended: Ask for the city name and then the rest of the code
-
 
 
 let cityFromUser = prompt("Vilken stad?");
@@ -28,7 +22,7 @@ for (let i = 0; i < cities.length; i++) {
 let cityIsFound = false;
 
 for (let i = 0; i < cities.length; i++) {
-    if (cityFromUser == cities[i].name) {
+    if (cityFromUser === cities[i].name) {
         document.querySelector("h2").textContent = `${cities[i].name} (${cities[i].country})`; 
         document.querySelector("title").textContent = `${cities[i].name}`;
         
@@ -49,17 +43,42 @@ if (!cityIsFound) { // ! = om det man skriver i prompten inte finns i databasen
 
 // ------------------------------------------------------ BLÅA KNAPPAR STADEN SOM ÄR LÄNGST BORT 
 
+// let maxDistance = 0;
+// let farthestCityIndex = -1;
+
+// const ifCityMatch = (cityName, cityIndex) => cityFromUser === cities[cityIndex].name;
+
+// for (let i = 0; i < distances.length; i++) {
+//     const { city1, city2, distance } = distances[i];
+    
+//     if (ifCityMatch(cityFromUser, city1) || ifCityMatch(cityFromUser, city2)) {
+//         const otherCity = ifCityMatch(cityFromUser, city1) ? city2 : city1;
+
+//         if (distance > maxDistance) {
+//             maxDistance = distance;
+//             farthestCityIndex = otherCity;
+//         }
+//     }
+// }
+
+// if (farthestCityIndex !== -1) {
+//     const cityElements = document.querySelectorAll(".cityBox");
+//     cityElements[farthestCityIndex].classList.add("furthest");
+
+//     const distanceDividedByTen = Math.round(maxDistance / 10);
+//     cityElements[farthestCityIndex].textContent = `${cities[farthestCityIndex].name} ${distanceDividedByTen} mil bort`;
+
+//     document.getElementById("furthest").textContent = `${cities[farthestCityIndex].name}`;
+// }
+
 let maxDistance = 0;
 let farthestCityIndex = -1;
 
-const ifCityMatch = (cityName, cityIndex) => cityFromUser === cities[cityIndex].name;
+const cityDivs = document.querySelectorAll(".cityBox");
 
-for (let i = 0; i < distances.length; i++) {
-    const { city1, city2, distance } = distances[i];
-    
-    if (ifCityMatch(cityFromUser, city1) || ifCityMatch(cityFromUser, city2)) {
-        const otherCity = ifCityMatch(cityFromUser, city1) ? city2 : city1;
-
+for (let { city1, city2, distance } of distances) {
+    if (cityFromUser === cities[city1].name || cityFromUser === cities[city2].name) {
+        const otherCity = cityFromUser === cities[city1].name ? city2 : city1;
         if (distance > maxDistance) {
             maxDistance = distance;
             farthestCityIndex = otherCity;
@@ -68,11 +87,11 @@ for (let i = 0; i < distances.length; i++) {
 }
 
 if (farthestCityIndex !== -1) {
-    const cityElements = document.querySelectorAll(".cityBox");
-    cityElements[farthestCityIndex].classList.add("furthest");
+    const cityElement = cityDivs[farthestCityIndex];
+    cityElement.classList.add("furthest");
 
     const distanceDividedByTen = Math.round(maxDistance / 10);
-    cityElements[farthestCityIndex].textContent = `${cities[farthestCityIndex].name} ${distanceDividedByTen} mil bort`;
+    cityElement.textContent = `${cities[farthestCityIndex].name} ${distanceDividedByTen} mil bort`;
 
     document.getElementById("furthest").textContent = `${cities[farthestCityIndex].name}`;
 }
